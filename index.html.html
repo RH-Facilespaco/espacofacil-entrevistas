@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roteiro de Entrevista – Espaço Fácil</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde-escuro: #002E24;
+    --verde-medio: #007D59;
+    --verde-claro: #E8F5F0;
+    --amber: #F9B112;
+    --amber-claro: #FEF8E7;
+    --cinza: #F4F6F5;
+    --texto: #1A1A1A;
+    --borda: #D0DDD9;
+    --danger: #C0392B;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: #002E24; color: var(--texto); font-size: 14px; line-height: 1.6; min-height: 100vh; }
+  .tela { display: none; } .tela.ativa { display: block; }
+  .container { max-width: 860px; margin: 0 auto; padding: 32px 20px; }
+  .header { background: #033D2F; border: 1px solid #1a5c47; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px; display: flex; align-items: center; gap: 20px; }
+  .header-logo { width: 48px; height: 48px; background: var(--amber); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--verde-escuro); font-weight: 700; flex-shrink: 0; }
+  .header-text h1 { font-family: 'DM Serif Display', serif; font-size: 20px; color: #fff; margin-bottom: 2px; }
+  .header-text p { color: #A8C4BB; font-size: 12px; }
+  .header-actions { margin-left: auto; display: flex; gap: 10px; align-items: center; }
+  .btn { padding: 9px 20px; border-radius: 8px; border: none; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.15s; display: inline-flex; align-items: center; gap: 6px; }
+  .btn-primary { background: var(--verde-medio); color: #fff; } .btn-primary:hover { background: #006647; }
+  .btn-amber { background: var(--amber); color: var(--verde-escuro); } .btn-amber:hover { background: #e0a00f; }
+  .btn-ghost { background: transparent; border: 1px solid #1a5c47; color: #A8C4BB; } .btn-ghost:hover { border-color: var(--verde-medio); color: #fff; }
+  .btn-danger { background: var(--danger); color: #fff; } .btn-danger:hover { background: #a93226; }
+  .btn-sm { padding: 6px 14px; font-size: 12px; }
+  .card { background: #fff; border-radius: 12px; border: 1px solid var(--borda); overflow: hidden; margin-bottom: 16px; }
+  .lista-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+  .lista-titulo { font-family: 'DM Serif Display', serif; font-size: 22px; color: #fff; }
+  .lista-subtitulo { color: #A8C4BB; font-size: 13px; margin-top: 2px; }
+  .entrevista-item { background: #033D2F; border: 1px solid #1a5c47; border-radius: 12px; padding: 16px 20px; margin-bottom: 10px; display: flex; align-items: center; gap: 16px; transition: border-color 0.15s; }
+  .entrevista-item:hover { border-color: var(--verde-medio); }
+  .entrevista-avatar { width: 40px; height: 40px; background: var(--verde-medio); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'DM Serif Display', serif; font-size: 16px; color: #fff; flex-shrink: 0; }
+  .entrevista-info { flex: 1; }
+  .entrevista-nome { font-weight: 600; color: #fff; font-size: 15px; }
+  .entrevista-meta { color: #A8C4BB; font-size: 12px; margin-top: 2px; }
+  .entrevista-rec { padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; flex-shrink: 0; }
+  .rec-avancar { background: #d4edda; color: #155724; }
+  .rec-ressalvas { background: var(--amber-claro); color: #7d5a00; }
+  .rec-nao-avancar { background: #fde8e8; color: #7b1a1a; }
+  .rec-pendente { background: #e2e8f0; color: #475569; }
+  .lista-vazia { text-align: center; padding: 60px 20px; color: #A8C4BB; }
+  .lista-vazia .icon { font-size: 48px; margin-bottom: 12px; }
+  .lista-vazia p { font-size: 15px; margin-bottom: 4px; color: #fff; }
+  .secao { margin-bottom: 28px; }
+  .secao-titulo { font-family: 'DM Serif Display', serif; font-size: 17px; color: #fff; border-bottom: 2px solid var(--verde-medio); padding-bottom: 8px; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+  .secao-titulo .num { background: var(--verde-medio); color: #fff; width: 26px; height: 26px; border-radius: 50%; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .pergunta-card { margin-bottom: 16px; }
+  .pergunta-header { background: var(--verde-claro); padding: 12px 18px; display: flex; align-items: flex-start; gap: 10px; }
+  .pergunta-num { background: var(--verde-medio); color: #fff; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 12px; white-space: nowrap; margin-top: 2px; flex-shrink: 0; }
+  .pergunta-texto { font-weight: 600; color: var(--verde-escuro); font-size: 14px; }
+  .pergunta-objetivo { font-size: 12px; color: #5A7A6E; margin-top: 3px; font-style: italic; }
+  .pergunta-body { padding: 14px 18px; }
+  .checklist-titulo { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: var(--verde-medio); margin-bottom: 8px; }
+  .checklist-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 6px; padding: 7px 10px; border-radius: 6px; border: 1px solid var(--borda); background: var(--cinza); cursor: pointer; transition: background 0.15s; }
+  .checklist-item:hover { background: var(--verde-claro); }
+  .checklist-item input[type="checkbox"] { width: 15px; height: 15px; flex-shrink: 0; margin-top: 2px; accent-color: var(--verde-medio); cursor: pointer; }
+  .checklist-item label { font-size: 13px; color: var(--texto); cursor: pointer; line-height: 1.4; }
+  .checklist-item.checked { background: var(--verde-claro); border-color: var(--verde-medio); }
+  .checklist-item.checked label { color: var(--verde-escuro); font-weight: 500; }
+  .nivel-bloco { margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--borda); }
+  .nivel-titulo { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: var(--verde-medio); margin-bottom: 8px; }
+  .nivel-opcoes { display: flex; gap: 8px; flex-wrap: wrap; }
+  .nivel-btn { padding: 6px 16px; border-radius: 20px; border: 2px solid var(--borda); background: #fff; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.15s; color: #555; }
+  .nivel-btn.fraca { border-color: #E74C3C; color: #E74C3C; } .nivel-btn.fraca.ativo { background: #E74C3C; color: #fff; }
+  .nivel-btn.adequada { border-color: var(--amber); color: #A07000; } .nivel-btn.adequada.ativo { background: var(--amber); color: var(--verde-escuro); }
+  .nivel-btn.forte { border-color: var(--verde-medio); color: var(--verde-medio); } .nivel-btn.forte.ativo { background: var(--verde-medio); color: #fff; }
+  .obs-bloco { margin-top: 12px; }
+  .obs-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: var(--verde-medio); margin-bottom: 5px; display: block; }
+  .obs-textarea { width: 100%; min-height: 56px; border: 1px solid var(--borda); border-radius: 6px; padding: 8px 10px; font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--texto); resize: vertical; background: var(--cinza); outline: none; transition: border 0.15s; }
+  .obs-textarea:focus { border-color: var(--verde-medio); background: #fff; }
+  .flag-atencao { background: var(--amber-claro); border-left: 3px solid var(--amber); border-radius: 0 6px 6px 0; padding: 8px 12px; font-size: 12px; color: #5A4500; margin-top: 8px; }
+  .dados-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; padding: 20px; }
+  .dados-item label { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: var(--verde-medio); margin-bottom: 5px; }
+  .dados-item input { width: 100%; border: 1px solid var(--borda); border-radius: 6px; padding: 8px 10px; font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--texto); background: var(--cinza); outline: none; transition: border 0.15s; }
+  .dados-item input:focus { border-color: var(--verde-medio); background: #fff; }
+  .resumo-card { padding: 20px; }
+  .recomendacao-opcoes { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; }
+  .rec-btn { padding: 9px 18px; border-radius: 8px; border: 2px solid var(--borda); background: #fff; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.15s; color: #555; }
+  .rec-btn.avancar { border-color: var(--verde-medio); color: var(--verde-medio); } .rec-btn.avancar.ativo { background: var(--verde-medio); color: #fff; }
+  .rec-btn.ressalvas { border-color: var(--amber); color: #A07000; } .rec-btn.ressalvas.ativo { background: var(--amber); color: var(--verde-escuro); }
+  .rec-btn.nao-avancar { border-color: var(--danger); color: var(--danger); } .rec-btn.nao-avancar.ativo { background: var(--danger); color: #fff; }
+  .barra-salvar { position: sticky; bottom: 0; background: #011f18; border-top: 1px solid #1a5c47; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; z-index: 100; }
+  .barra-salvar-info { color: #A8C4BB; font-size: 13px; }
+  .barra-salvar-info strong { color: #fff; }
+  .barra-acoes { display: flex; gap: 10px; }
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 200; align-items: center; justify-content: center; padding: 20px; }
+  .modal-overlay.ativo { display: flex; }
+  .modal { background: #fff; border-radius: 16px; padding: 28px; max-width: 460px; width: 100%; }
+  .modal h3 { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--verde-escuro); margin-bottom: 8px; }
+  .modal p { color: #555; font-size: 13px; margin-bottom: 20px; }
+  .modal-acoes { display: flex; gap: 10px; justify-content: flex-end; }
+  .toast { position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%) translateY(20px); background: var(--verde-escuro); color: #fff; padding: 10px 20px; border-radius: 8px; font-size: 13px; font-weight: 500; opacity: 0; transition: all 0.3s; z-index: 300; white-space: nowrap; }
+  .toast.visivel { opacity: 1; transform: translateX(-50%) translateY(0); }
+  .loading { display: flex; align-items: center; justify-content: center; padding: 60px; color: #A8C4BB; gap: 10px; font-size: 14px; }
+  .spinner { width: 20px; height: 20px; border: 2px solid #1a5c47; border-top-color: var(--verde-medio); border-radius: 50%; animation: spin 0.7s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @media (max-width: 600px) { .dados-grid { grid-template-columns: 1fr; } .header { flex-wrap: wrap; gap: 12px; } .header-actions { margin-left: 0; width: 100%; } .entrevista-item { flex-wrap: wrap; } }
+</style>
+</head>
+<body>
+
+<!-- TELA LISTA -->
+<div id="tela-lista" class="tela ativa">
+  <div class="container">
+    <div class="header">
+      <div class="header-logo">EF</div>
+      <div class="header-text">
+        <h1>Entrevistas</h1>
+        <p>Analista Administrativo Comercial · Espaço Fácil</p>
+      </div>
+      <div class="header-actions">
+        <button class="btn btn-amber" onclick="novaEntrevista()">+ Nova entrevista</button>
+      </div>
+    </div>
+    <div class="lista-header">
+      <div>
+        <div class="lista-titulo">Entrevistas salvas</div>
+        <div class="lista-subtitulo" id="lista-subtitulo">Carregando...</div>
+      </div>
+    </div>
+    <div id="lista-conteudo">
+      <div class="loading"><div class="spinner"></div> Carregando entrevistas...</div>
+    </div>
+  </div>
+</div>
+
+<!-- TELA ROTEIRO -->
+<div id="tela-roteiro" class="tela">
+  <div class="container">
+    <div class="header">
+      <div class="header-logo">EF</div>
+      <div class="header-text">
+        <h1>Roteiro de Entrevista</h1>
+        <p>Analista Administrativo Comercial · Espaço Fácil</p>
+      </div>
+      <div class="header-actions">
+        <button class="btn btn-ghost" onclick="voltarLista()">← Voltar</button>
+      </div>
+    </div>
+
+    <div class="secao">
+      <div class="secao-titulo"><span class="num">✦</span> Dados da Entrevista</div>
+      <div class="card">
+        <div class="dados-grid">
+          <div class="dados-item"><label>Nome do candidato *</label><input type="text" id="campo-nome" placeholder="Ex.: Maria Silva"></div>
+          <div class="dados-item"><label>Unidade pretendida</label><input type="text" id="campo-unidade" placeholder="Ex.: Cascavel"></div>
+          <div class="dados-item"><label>Data da entrevista</label><input type="text" id="campo-data" placeholder="Ex.: 03/07/2026"></div>
+          <div class="dados-item"><label>Entrevistador(a)</label><input type="text" id="campo-entrevistador" placeholder="Nome de quem conduziu"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="secao">
+      <div class="secao-titulo"><span class="num">1</span> Trajetória de Vida</div>
+      <div class="card pergunta-card" id="p1">
+        <div class="pergunta-header"><span class="pergunta-num">P1</span><div><div class="pergunta-texto">Me conta um pouco sobre você — sua história, de onde veio, como é sua vida hoje.</div><div class="pergunta-objetivo">Objetivo: criar rapport e captar aspectos pessoais relevantes de forma natural.</div></div></div>
+        <div class="pergunta-body">
+          <div class="checklist-titulo">Aspectos a observar durante a fala</div>
+          <div class="checklist-item"><input type="checkbox" id="p1c1"><label for="p1c1">Onde nasceu / cidade de origem</label></div>
+          <div class="checklist-item"><input type="checkbox" id="p1c2"><label for="p1c2">Estrutura familiar atual (mora com quem, filhos, estado civil)</label></div>
+          <div class="checklist-item"><input type="checkbox" id="p1c3"><label for="p1c3">Meio de locomoção disponível</label></div>
+          <div class="checklist-item"><input type="checkbox" id="p1c4"><label for="p1c4">O que os familiares próximos fazem</label></div>
+          <div class="checklist-item"><input type="checkbox" id="p1c5"><label for="p1c5">O que faz no tempo livre / hobbies</label></div>
+          <div class="checklist-item"><input type="checkbox" id="p1c6"><label for="p1c6">Comunicação fluida, espontânea e organizada ao falar de si</label></div>
+          <div class="flag-atencao">💡 <strong>Dica:</strong> Deixe a pessoa falar livremente. Sonde com naturalidade: <em>"E como você costuma se locomover?"</em></div>
+          <div class="nivel-bloco"><div class="nivel-titulo">Nível da resposta</div><div class="nivel-opcoes"><button class="nivel-btn fraca" onclick="selecionarNivel(this,'p1')">Fraca</button><button class="nivel-btn adequada" onclick="selecionarNivel(this,'p1')">Adequada</button><button class="nivel-btn forte" onclick="selecionarNivel(this,'p1')">Forte</button></div></div>
+          <div class="obs-bloco"><span class="obs-label">Observações</span><textarea class="obs-textarea" id="obs-p1" placeholder="Aspectos captados, tom da conversa, naturalidade..."></textarea></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="secao">
+      <div class="secao-titulo"><span class="num">2</span> Trajetória Profissional</div>
+      <div class="card pergunta-card" id="p2">
+        <div class="pergunta-header"><span class="pergunta-num">P2</span><div><div class="pergunta-texto">Me faz um resumo da sua trajetória profissional — de onde começou até onde está hoje.</div><div class="pergunta-objetivo">Avalia: coerência da carreira, evolução e alinhamento com a vaga.</div></div></div>
+        <div class="pergunta-body">
+          <div class="checklist-titulo">Elementos esperados na resposta</div>
+          <div class="checklist-item"><input type="checkbox" id="p2c1"><label for="p2c1">Apresenta a trajetória de forma cronológica e organizada</label></div>
+          <div class="checklist-item"><input type="checkbox" id="p2c2"><label for="p2c2">Explica os motivos de saída das empresas anteriores</label></div>
+          <div class="checklist-item"><input type="checkbox" id="p2c3"><label for="p2c3">Demonstra evolução de responsabilidades ao longo do tempo</label></div>
+          <div class="checklist-item"><input type="checkbox" id="p2c4"><label for="p2c4">Conecta a trajetória ao interesse pela vaga atual</label></div>
+          <div class="checklist-item"><input type="checkbox" id="p2c5"><label for="p2c5">Experiências com atendimento, vendas ou operação aparecem naturalmente</label></div>
+          <div class="checklist-item"><input type="checkbox" id="p2c6"><label for="p2c6">Estabilidade razoável nos vínculos (sem muitas saídas rápidas sem justificativa)</label></div>
+          <div class="flag-atencao">⚠️ <strong>Atenção:</strong> Muitas saídas em menos de 1 ano sem justificativa é sinal de instabilidade.</div>
+          <div class="nivel-bloco"><div class="nivel-titulo">Nível da resposta</div><div class="nivel-opcoes"><button class="nivel-btn fraca" onclick="selecionarNivel(this,'p2')">Fraca</button><button class="nivel-btn adequada" onclick="selecionarNivel(this,'p2')">Adequada</button><button class="nivel-btn forte" onclick="selecionarNivel(this,'p2')">Forte</button></div></div>
+          <div class="obs-bloco"><span class="obs-label">Observações</span><textarea class="obs-textarea" id="obs-p2" placeholder="Empresas citadas, motivos de saída, coerência da narrativa..."></textarea></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="secao">
+      <div class="secao-titulo"><span class="num">3</span> Organização e Múltiplas Demandas</div>
+      <div class="card pergunta-card" id="p3">
+        <div class="pergunta-header"><span class="pergunta-num">P3</span><div><div class="pergunta-texto">Como você organiza suas prioridades quando existem várias demandas ao mesmo tempo?</div><div class="pergunta-objetivo">Avalia: gestão de prioridades, organização prática e maturidade operacional.</div></div></div>
+        <div class="pergunta-body">
+          <div class="checklist-titulo">Elementos esperados na resposta</div>
+          <div class="checklist-item"><input type="checkbox" id="p3c1"><label for="p3c1">Descreve um método ou critério real de priorização</label></div>
+          <div class="checklist-item"><input type="checkbox" id="p3c2"><label for="p3c2">Menciona uso de ferramentas (agenda, lista, CRM, planilha)</label></div>
+          <div class="checklist-item"><input type="checkbox" id="p3c3"><label for="p3c3">Demonstra consciência de urgência vs. importância</label></div>
+          <div class="checklist-item"><input type="checkbox" id="p3c4"><label for="p3c4">Dá exemplo concreto de dia ou semana de alta demanda</label></div>
+          <div class="checklist-item"><input type="checkbox" id="p3c5"><label for="p3c5">Postura calma e estruturada ao descrever o processo</label></div>
+          <div class="nivel-bloco"><div class="nivel-titulo">Nível da resposta</div><div class="nivel-opcoes"><button class="nivel-btn fraca" onclick="selecionarNivel(this,'p3')">Fraca</button><button class="nivel-btn adequada" onclick="selecionarNivel(this,'p3')">Adequada</button><button class="nivel-btn forte" onclick="selecionarNivel(this,'p3')">Forte</button></div></div>
+          <div class="obs-bloco"><span class="obs-label">Observações</span><textarea class="obs-textarea" id="obs-p3" placeholder="Método descrito, ferramentas citadas, exemplo dado..."></textarea></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="secao">
+      <div class="secao-titulo"><span class="num">4</span> Atendimento e Venda</div>
+      <div class="card pergunta-card" id="p4">
+        <div class="pergunta-header"><span class="pergunta-num">P4</span><div><div class="pergunta-texto">Me conta de um cliente com quem você construiu um vínculo forte. Como foi esse relacionamento?</div><div class="pergunta-objetivo">Avalia (indiretamente): escuta ativa, empatia, postura consultiva e fidelização.</div></div></div>
+        <div class="pergunta-body">
+          <div class="checklist-titulo">Sinais a observar na resposta</div>
+          <div class="checklist-item"><input type="checkbox" id="p4c1"><label for="p4c1">Demonstra interesse genuíno pelo cliente como pessoa</label></div>
+          <div class="checklist-item"><input type="checkbox" id="p4c2"><label for="p4c2">Descreve ações concretas que construíram o vínculo</label></div>
+          <div class="checklist-item"><input type="checkbox" id="p4c3"><label for="p4c3">Menciona comunicação proativa e personalizada</label></div>
+          <div class="checklist-item"><input type="checkbox" id="p4c4"><label for="p4c4">O relacionamento gerou resultado (retenção, indicação, expansão)</label></div>
+          <div class="checklist-item"><input type="checkbox" id="p4c5"><label for="p4c5">Conta com emoção e detalhes — não é uma resposta genérica</label></div>
+          <div class="nivel-bloco"><div class="nivel-titulo">Nível da resposta</div><div class="nivel-opcoes"><button class="nivel-btn fraca" onclick="selecionarNivel(this,'p4')">Fraca</button><button class="nivel-btn adequada" onclick="selecionarNivel(this,'p4')">Adequada</button><button class="nivel-btn forte" onclick="selecionarNivel(this,'p4')">Forte</button></div></div>
+          <div class="obs-bloco"><span class="obs-label">Observações</span><textarea class="obs-textarea" id="obs-p4" placeholder="A história contada, detalhes do relacionamento, tom emocional..."></textarea></div>
+        </div>
+      </div>
+      <div class="card pergunta-card" id="p5">
+        <div class="pergunta-header"><span class="pergunta-num">P5</span><div><div class="pergunta-texto">Me conta de um atendimento difícil que você teve. Como foi e o que você fez?</div><div class="pergunta-objetivo">Avalia (indiretamente): manejo de objeções, resiliência e equilíbrio emocional.</div></div></div>
+        <div class="pergunta-body">
+          <div class="checklist-titulo">Sinais a observar na resposta</div>
+          <div class="checklist-item"><input type="checkbox" id="p5c1"><label for="p5c1">Descreve a situação com clareza e sem vitimização</label></div>
+          <div class="checklist-item"><input type="checkbox" id="p5c2"><label for="p5c2">Assume responsabilidade pela condução do atendimento</label></div>
+          <div class="checklist-item"><input type="checkbox" id="p5c3"><label for="p5c3">Manteve a calma e buscou solução ativa</label></div>
+          <div class="checklist-item"><input type="checkbox" id="p5c4"><label for="p5c4">Demonstra aprendizado real com a situação</label></div>
+          <div class="checklist-item"><input type="checkbox" id="p5c5"><label for="p5c5">Resultado: conseguiu reverter ou preservar o relacionamento</label></div>
+          <div class="flag-atencao">⚠️ <strong>Atenção:</strong> Candidatos que culpam o cliente ou a empresa sem assumir nenhuma parte tendem a ter baixa responsabilidade.</div>
+          <div class="nivel-bloco"><div class="nivel-titulo">Nível da resposta</div><div class="nivel-opcoes"><button class="nivel-btn fraca" onclick="selecionarNivel(this,'p5')">Fraca</button><button class="nivel-btn adequada" onclick="selecionarNivel(this,'p5')">Adequada</button><button class="nivel-btn forte" onclick="selecionarNivel(this,'p5')">Forte</button></div></div>
+          <div class="obs-bloco"><span class="obs-label">Observações</span><textarea class="obs-textarea" id="obs-p5" placeholder="Situação descrita, como conduziu, tom emocional, resultado..."></textarea></div>
+        </div>
+      </div>
+      <div class="card pergunta-card" id="p6">
+        <div class="pergunta-header"><span class="pergunta-num">P6</span><div><div class="pergunta-texto">Como você conduz um atendimento de venda do início ao fim? E quais suas técnicas comerciais para converter um cliente?</div><div class="pergunta-objetivo">Avalia: consciência do próprio método e vocabulário comercial.</div></div></div>
+        <div class="pergunta-body">
+          <div class="checklist-titulo">Elementos esperados na resposta</div>
+          <div class="checklist-item"><input type="checkbox" id="p6c1"><label for="p6c1">Inicia com diagnóstico — entende a necessidade antes de oferecer</label></div>
+          <div class="checklist-item"><input type="checkbox" id="p6c2"><label for="p6c2">Apresenta solução personalizada, não genérica</label></div>
+          <div class="checklist-item"><input type="checkbox" id="p6c3"><label for="p6c3">Menciona manejo de objeções de forma estruturada</label></div>
+          <div class="checklist-item"><input type="checkbox" id="p6c4"><label for="p6c4">Fala sobre follow-up ativo com clientes indecisos</label></div>
+          <div class="checklist-item"><input type="checkbox" id="p6c5"><label for="p6c5">Cita técnica ou abordagem com nome (SPIN, BANT, ancoragem, urgência, valor)</label></div>
+          <div class="checklist-item"><input type="checkbox" id="p6c6"><label for="p6c6">Demonstra visão de processo, não de "tentativa e erro"</label></div>
+          <div class="flag-atencao">⚠️ <strong>Atenção:</strong> Candidatos que descrevem venda como "mostrar o produto e esperar" têm postura passiva — critério eliminatório.</div>
+          <div class="nivel-bloco"><div class="nivel-titulo">Nível da resposta</div><div class="nivel-opcoes"><button class="nivel-btn fraca" onclick="selecionarNivel(this,'p6')">Fraca</button><button class="nivel-btn adequada" onclick="selecionarNivel(this,'p6')">Adequada</button><button class="nivel-btn forte" onclick="selecionarNivel(this,'p6')">Forte</button></div></div>
+          <div class="obs-bloco"><span class="obs-label">Observações</span><textarea class="obs-textarea" id="obs-p6" placeholder="Método descrito, técnicas citadas, nível de consciência comercial..."></textarea></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="secao">
+      <div class="secao-titulo"><span class="num">5</span> Sistemas e Tecnologia</div>
+      <div class="card pergunta-card" id="p7">
+        <div class="pergunta-header"><span class="pergunta-num">P7</span><div><div class="pergunta-texto">Você já trabalhou com CRM ou algum sistema de gestão? Como usava no dia a dia?</div><div class="pergunta-objetivo">Avalia: familiaridade com tecnologia e disciplina operacional.</div></div></div>
+        <div class="pergunta-body">
+          <div class="checklist-titulo">Elementos esperados na resposta</div>
+          <div class="checklist-item"><input type="checkbox" id="p7c1"><label for="p7c1">Cita ferramenta(s) específica(s) usada(s)</label></div>
+          <div class="checklist-item"><input type="checkbox" id="p7c2"><label for="p7c2">Descreve uso ativo (não apenas "tinha acesso")</label></div>
+          <div class="checklist-item"><input type="checkbox" id="p7c3"><label for="p7c3">Menciona registro de interações, follow-ups ou funil</label></div>
+          <div class="checklist-item"><input type="checkbox" id="p7c4"><label for="p7c4">Demonstra naturalidade com tecnologia no geral</label></div>
+          <div class="checklist-item"><input type="checkbox" id="p7c5"><label for="p7c5">Se não usou CRM, mostra adaptabilidade e vontade real de aprender</label></div>
+          <div class="flag-atencao">⚠️ <strong>Atenção:</strong> Dificuldade com tecnologia é critério eliminatório.</div>
+          <div class="nivel-bloco"><div class="nivel-titulo">Nível da resposta</div><div class="nivel-opcoes"><button class="nivel-btn fraca" onclick="selecionarNivel(this,'p7')">Fraca</button><button class="nivel-btn adequada" onclick="selecionarNivel(this,'p7')">Adequada</button><button class="nivel-btn forte" onclick="selecionarNivel(this,'p7')">Forte</button></div></div>
+          <div class="obs-bloco"><span class="obs-label">Observações</span><textarea class="obs-textarea" id="obs-p7" placeholder="Ferramentas citadas, profundidade do uso, postura frente à tecnologia..."></textarea></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="secao">
+      <div class="secao-titulo"><span class="num">6</span> Senso de Dono, Autonomia e Fit Cultural</div>
+      <div class="card pergunta-card" id="p8">
+        <div class="pergunta-header"><span class="pergunta-num">P8</span><div><div class="pergunta-texto">O que significa ter senso de dono para você?</div><div class="pergunta-objetivo">Avalia: mentalidade de responsabilidade integral e visão além do cargo.</div></div></div>
+        <div class="pergunta-body">
+          <div class="checklist-titulo">Elementos esperados na resposta</div>
+          <div class="checklist-item"><input type="checkbox" id="p8c1"><label for="p8c1">Assume responsabilidade pelos resultados, não apenas pelas tarefas</label></div>
+          <div class="checklist-item"><input type="checkbox" id="p8c2"><label for="p8c2">Conecta crescimento pessoal ao crescimento da empresa</label></div>
+          <div class="checklist-item"><input type="checkbox" id="p8c3"><label for="p8c3">Visão além do cargo — enxerga o todo, não só a própria função</label></div>
+          <div class="checklist-item"><input type="checkbox" id="p8c4"><label for="p8c4">Dá exemplo concreto (não apenas define o conceito)</label></div>
+          <div class="flag-atencao">⚠️ <strong>Atenção:</strong> Respostas como "vestir a camisa" sem exemplo concreto indicam superficialidade.</div>
+          <div class="nivel-bloco"><div class="nivel-titulo">Nível da resposta</div><div class="nivel-opcoes"><button class="nivel-btn fraca" onclick="selecionarNivel(this,'p8')">Fraca</button><button class="nivel-btn adequada" onclick="selecionarNivel(this,'p8')">Adequada</button><button class="nivel-btn forte" onclick="selecionarNivel(this,'p8')">Forte</button></div></div>
+          <div class="obs-bloco"><span class="obs-label">Observações</span><textarea class="obs-textarea" id="obs-p8" placeholder="Definição dada, exemplo citado, profundidade da resposta..."></textarea></div>
+        </div>
+      </div>
+      <div class="card pergunta-card" id="p9">
+        <div class="pergunta-header"><span class="pergunta-num">P9</span><div><div class="pergunta-texto">Como você trabalhava em equipe? O ambiente era aberto? Conseguiu fazer amizade?</div><div class="pergunta-objetivo">Avalia (indiretamente): relacionamento interpessoal e fit com cultura colaborativa.</div></div></div>
+        <div class="pergunta-body">
+          <div class="checklist-titulo">Sinais a observar na resposta</div>
+          <div class="checklist-item"><input type="checkbox" id="p9c1"><label for="p9c1">Fala com naturalidade e afeto sobre colegas e ambiente</label></div>
+          <div class="checklist-item"><input type="checkbox" id="p9c2"><label for="p9c2">Menciona episódios concretos de colaboração ou apoio mútuo</label></div>
+          <div class="checklist-item"><input type="checkbox" id="p9c3"><label for="p9c3">Demonstra facilidade de relacionamento sem depender de validação</label></div>
+          <div class="checklist-item"><input type="checkbox" id="p9c4"><label for="p9c4">Construiu amizades ou vínculos genuínos no trabalho</label></div>
+          <div class="checklist-item"><input type="checkbox" id="p9c5"><label for="p9c5">Tom positivo sobre os ambientes que passou</label></div>
+          <div class="flag-atencao">⚠️ <strong>Atenção:</strong> Dificuldade de relacionamento ou ambientes sempre ruins podem indicar baixo fit cultural.</div>
+          <div class="nivel-bloco"><div class="nivel-titulo">Nível da resposta</div><div class="nivel-opcoes"><button class="nivel-btn fraca" onclick="selecionarNivel(this,'p9')">Fraca</button><button class="nivel-btn adequada" onclick="selecionarNivel(this,'p9')">Adequada</button><button class="nivel-btn forte" onclick="selecionarNivel(this,'p9')">Forte</button></div></div>
+          <div class="obs-bloco"><span class="obs-label">Observações</span><textarea class="obs-textarea" id="obs-p9" placeholder="Como descreveu o ambiente, vínculos citados, tom emocional..."></textarea></div>
+        </div>
+      </div>
+      <div class="card pergunta-card" id="p10">
+        <div class="pergunta-header"><span class="pergunta-num">P10</span><div><div class="pergunta-texto">Como seria para você trabalhar sem um líder por perto? Já passou por isso? Como foi?</div><div class="pergunta-objetivo">Avalia: autonomia real e fit com o contexto de nova unidade.</div></div></div>
+        <div class="pergunta-body">
+          <div class="checklist-titulo">Sinais a observar na resposta</div>
+          <div class="checklist-item"><input type="checkbox" id="p10c1"><label for="p10c1">Demonstra conforto genuíno com ausência de supervisão próxima</label></div>
+          <div class="checklist-item"><input type="checkbox" id="p10c2"><label for="p10c2">Cita experiência real de trabalho com pouca liderança presente</label></div>
+          <div class="checklist-item"><input type="checkbox" id="p10c3"><label for="p10c3">Descreve como se organizou e tomou decisões de forma independente</label></div>
+          <div class="checklist-item"><input type="checkbox" id="p10c4"><label for="p10c4">Não demonstra insegurança ou necessidade de validação constante</label></div>
+          <div class="checklist-item"><input type="checkbox" id="p10c5"><label for="p10c5">Enxerga como oportunidade de protagonismo, não como abandono</label></div>
+          <div class="flag-atencao">⚠️ <strong>Atenção:</strong> Insegurança ou dependência de aprovação são sinal importante — a vaga exige alta autonomia desde o primeiro dia.</div>
+          <div class="nivel-bloco"><div class="nivel-titulo">Nível da resposta</div><div class="nivel-opcoes"><button class="nivel-btn fraca" onclick="selecionarNivel(this,'p10')">Fraca</button><button class="nivel-btn adequada" onclick="selecionarNivel(this,'p10')">Adequada</button><button class="nivel-btn forte" onclick="selecionarNivel(this,'p10')">Forte</button></div></div>
+          <div class="obs-bloco"><span class="obs-label">Observações</span><textarea class="obs-textarea" id="obs-p10" placeholder="Experiência citada, tom, segurança, como lidou com a situação..."></textarea></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="secao">
+      <div class="secao-titulo"><span class="num">✦</span> Resumo da Entrevista</div>
+      <div class="card">
+        <div class="resumo-card">
+          <div style="margin-bottom:16px;"><span class="obs-label">Impressão geral</span><textarea class="obs-textarea" id="obs-geral" style="min-height:72px;" placeholder="Comunicação, postura, energia, presença, coerência entre currículo e fala..."></textarea></div>
+          <div style="margin-bottom:16px;"><span class="obs-label">Pontos positivos</span><textarea class="obs-textarea" id="obs-positivos" style="min-height:64px;" placeholder="3-5 principais pontos fortes observados..."></textarea></div>
+          <div style="margin-bottom:16px;"><span class="obs-label">Pontos de atenção</span><textarea class="obs-textarea" id="obs-atencao" style="min-height:64px;" placeholder="Inconsistências, lacunas, comportamentos a monitorar..."></textarea></div>
+          <div style="margin-bottom:16px;">
+            <span class="obs-label">Recomendação</span>
+            <div class="recomendacao-opcoes">
+              <button class="rec-btn avancar" onclick="selecionarRec(this)">✓ Avançar</button>
+              <button class="rec-btn ressalvas" onclick="selecionarRec(this)">⚑ Avançar com ressalvas</button>
+              <button class="rec-btn nao-avancar" onclick="selecionarRec(this)">✗ Não avançar</button>
+            </div>
+          </div>
+          <div><span class="obs-label">Justificativa</span><textarea class="obs-textarea" id="obs-justificativa" style="min-height:64px;" placeholder="Explique brevemente o motivo da recomendação..."></textarea></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="height: 80px;"></div>
+  </div>
+
+  <div class="barra-salvar">
+    <div class="barra-salvar-info"><span id="barra-nome-candidato">Preencha o nome do candidato</span></div>
+    <div class="barra-acoes">
+      <button class="btn btn-ghost" onclick="voltarLista()">Cancelar</button>
+      <button class="btn btn-amber" onclick="salvarEntrevista()">💾 Salvar entrevista</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-excluir">
+  <div class="modal">
+    <h3>Excluir entrevista?</h3>
+    <p>Esta ação não pode ser desfeita. Os dados da entrevista serão removidos permanentemente.</p>
+    <div class="modal-acoes">
+      <button class="btn btn-ghost" onclick="fecharModal()">Cancelar</button>
+      <button class="btn btn-danger" onclick="confirmarExclusao()">Excluir</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  const SUPABASE_URL = 'https://sltspedahiechznsxwqe.supabase.co';
+  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNsdHNwZWRhaGllY2h6bnN4d3FlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMwODA2NjYsImV4cCI6MjA5ODY1NjY2Nn0.XawCGA5DKzSkGJ1vEXEh52tkr2kmANH4PS4m-RyZwfw';
+
+  const api = async (method, path, body) => {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/${path}`, {
+      method,
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': `Bearer ${SUPABASE_KEY}`,
+        'Content-Type': 'application/json',
+        'Prefer': method === 'POST' ? 'return=representation' : '',
+      },
+      body: body ? JSON.stringify(body) : undefined,
+    });
+    if (!res.ok) throw new Error(await res.text());
+    return res.status === 204 ? null : res.json();
+  };
+
+  let entrevistaAtual = null;
+  let idParaExcluir = null;
+  let recomendacaoAtual = '';
+
+  const PERGUNTAS = ['p1','p2','p3','p4','p5','p6','p7','p8','p9','p10'];
+
+  function mostrarTela(id) {
+    document.querySelectorAll('.tela').forEach(t => t.classList.remove('ativa'));
+    document.getElementById(id).classList.add('ativa');
+    window.scrollTo(0, 0);
+  }
+
+  function voltarLista() { mostrarTela('tela-lista'); carregarLista(); }
+  function novaEntrevista() { entrevistaAtual = null; limparFormulario(); mostrarTela('tela-roteiro'); }
+
+  async function carregarLista() {
+    const el = document.getElementById('lista-conteudo');
+    el.innerHTML = '<div class="loading"><div class="spinner"></div> Carregando entrevistas...</div>';
+    try {
+      const dados = await api('GET', 'entrevistas?select=*&order=created_at.desc');
+      if (!dados || dados.length === 0) {
+        document.getElementById('lista-subtitulo').textContent = 'Nenhuma entrevista registrada';
+        el.innerHTML = `<div class="lista-vazia"><div class="icon">📋</div><p>Nenhuma entrevista salva ainda</p><span>Clique em "Nova entrevista" para começar</span></div>`;
+        return;
+      }
+      document.getElementById('lista-subtitulo').textContent = `${dados.length} entrevista${dados.length !== 1 ? 's' : ''} salva${dados.length !== 1 ? 's' : ''}`;
+      el.innerHTML = dados.map(e => {
+        const iniciais = (e.nome || '?').split(' ').slice(0,2).map(w => w[0]).join('').toUpperCase();
+        const recClasse = { 'avancar': 'rec-avancar', 'ressalvas': 'rec-ressalvas', 'nao-avancar': 'rec-nao-avancar' }[e.recomendacao] || 'rec-pendente';
+        const recLabel = { 'avancar': 'Avançar', 'ressalvas': 'Avançar c/ ressalvas', 'nao-avancar': 'Não avançar' }[e.recomendacao] || 'Pendente';
+        const dataStr = e.data || new Date(e.created_at).toLocaleDateString('pt-BR');
+        return `<div class="entrevista-item">
+          <div class="entrevista-avatar">${iniciais}</div>
+          <div class="entrevista-info"><div class="entrevista-nome">${e.nome}</div><div class="entrevista-meta">${e.unidade || '—'} · ${dataStr} · ${e.entrevistador || '—'}</div></div>
+          <span class="entrevista-rec ${recClasse}">${recLabel}</span>
+          <button class="btn btn-primary btn-sm" onclick="abrirEntrevista('${e.id}')">Ver</button>
+          <button class="btn btn-ghost btn-sm" onclick="pedirExclusao('${e.id}')">✕</button>
+        </div>`;
+      }).join('');
+    } catch(err) {
+      el.innerHTML = `<div class="lista-vazia"><div class="icon">⚠️</div><p>Erro ao carregar entrevistas</p><span>${err.message}</span></div>`;
+    }
+  }
+
+  async function abrirEntrevista(id) {
+    try {
+      const dados = await api('GET', `entrevistas?id=eq.${id}&select=*`);
+      if (!dados || !dados[0]) { mostrarToast('Erro ao carregar entrevista.'); return; }
+      const e = dados[0];
+      entrevistaAtual = id;
+      limparFormulario();
+      document.getElementById('campo-nome').value = e.nome || '';
+      document.getElementById('campo-unidade').value = e.unidade || '';
+      document.getElementById('campo-data').value = e.data || '';
+      document.getElementById('campo-entrevistador').value = e.entrevistador || '';
+      Object.entries(e.checks || {}).forEach(([cbId, val]) => {
+        const el = document.getElementById(cbId);
+        if (el) { el.checked = val; el.closest('.checklist-item').classList.toggle('checked', val); }
+      });
+      Object.entries(e.niveis || {}).forEach(([pid, nivel]) => {
+        const card = document.getElementById(pid);
+        if (!card) return;
+        card.querySelectorAll('.nivel-btn').forEach(b => b.classList.toggle('ativo', b.textContent.toLowerCase().trim() === nivel));
+      });
+      Object.entries(e.obs || {}).forEach(([obsId, val]) => {
+        const el = document.getElementById(obsId);
+        if (el) el.value = val;
+      });
+      recomendacaoAtual = e.recomendacao || '';
+      document.querySelectorAll('.rec-btn').forEach(b => b.classList.toggle('ativo', b.classList.contains(recomendacaoAtual)));
+      atualizarBarraNome();
+      mostrarTela('tela-roteiro');
+    } catch(err) { mostrarToast('Erro: ' + err.message); }
+  }
+
+  async function salvarEntrevista() {
+    const nome = document.getElementById('campo-nome').value.trim();
+    if (!nome) { mostrarToast('Preencha o nome do candidato antes de salvar.'); document.getElementById('campo-nome').focus(); return; }
+    const checks = {};
+    document.querySelectorAll('.checklist-item input[type="checkbox"]').forEach(cb => { checks[cb.id] = cb.checked; });
+    const niveis = {};
+    PERGUNTAS.forEach(pid => {
+      const card = document.getElementById(pid);
+      if (!card) return;
+      const ativo = card.querySelector('.nivel-btn.ativo');
+      if (ativo) niveis[pid] = ativo.textContent.toLowerCase().trim();
+    });
+    const obs = {};
+    document.querySelectorAll('.obs-textarea').forEach(ta => { if (ta.id) obs[ta.id] = ta.value; });
+    const payload = {
+      nome,
+      unidade: document.getElementById('campo-unidade').value.trim(),
+      data: document.getElementById('campo-data').value.trim(),
+      entrevistador: document.getElementById('campo-entrevistador').value.trim(),
+      recomendacao: recomendacaoAtual,
+      checks, niveis, obs,
+    };
+    try {
+      if (entrevistaAtual) {
+        await api('PATCH', `entrevistas?id=eq.${entrevistaAtual}`, payload);
+      } else {
+        const res = await api('POST', 'entrevistas', payload);
+        entrevistaAtual = res[0].id;
+      }
+      mostrarToast('Entrevista salva com sucesso!');
+    } catch(err) { mostrarToast('Erro ao salvar: ' + err.message); }
+  }
+
+  function pedirExclusao(id) { idParaExcluir = id; document.getElementById('modal-excluir').classList.add('ativo'); }
+  function fecharModal() { document.getElementById('modal-excluir').classList.remove('ativo'); idParaExcluir = null; }
+  async function confirmarExclusao() {
+    if (!idParaExcluir) return;
+    try {
+      await api('DELETE', `entrevistas?id=eq.${idParaExcluir}`);
+      fecharModal(); mostrarToast('Entrevista excluída.'); carregarLista();
+    } catch(err) { mostrarToast('Erro ao excluir: ' + err.message); }
+  }
+
+  function selecionarNivel(btn, perguntaId) {
+    const card = document.getElementById(perguntaId);
+    card.querySelectorAll('.nivel-btn').forEach(b => b.classList.remove('ativo'));
+    btn.classList.add('ativo');
+  }
+
+  function selecionarRec(btn) {
+    document.querySelectorAll('.rec-btn').forEach(b => b.classList.remove('ativo'));
+    btn.classList.add('ativo');
+    recomendacaoAtual = Array.from(btn.classList).find(c => ['avancar','ressalvas','nao-avancar'].includes(c)) || '';
+  }
+
+  function limparFormulario() {
+    ['campo-nome','campo-unidade','campo-data','campo-entrevistador'].forEach(id => { document.getElementById(id).value = ''; });
+    document.querySelectorAll('.checklist-item input[type="checkbox"]').forEach(cb => { cb.checked = false; cb.closest('.checklist-item').classList.remove('checked'); });
+    document.querySelectorAll('.nivel-btn').forEach(b => b.classList.remove('ativo'));
+    document.querySelectorAll('.obs-textarea').forEach(ta => ta.value = '');
+    document.querySelectorAll('.rec-btn').forEach(b => b.classList.remove('ativo'));
+    recomendacaoAtual = '';
+    document.getElementById('barra-nome-candidato').textContent = 'Preencha o nome do candidato';
+  }
+
+  function atualizarBarraNome() {
+    const nome = document.getElementById('campo-nome').value.trim();
+    document.getElementById('barra-nome-candidato').textContent = nome || 'Preencha o nome do candidato';
+  }
+
+  let toastTimer;
+  function mostrarToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg; t.classList.add('visivel');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove('visivel'), 3000);
+  }
+
+  document.getElementById('campo-nome').addEventListener('input', atualizarBarraNome);
+  document.querySelectorAll('.checklist-item input[type="checkbox"]').forEach(cb => {
+    cb.addEventListener('change', function() { this.closest('.checklist-item').classList.toggle('checked', this.checked); });
+  });
+
+  carregarLista();
+</script>
+</body>
+</html>
